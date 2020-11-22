@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+if [[ ! -f pom.xml ]];
+then
+  echo "No pom.xml exists, exiting"
+  exit 100
+fi
+
+echo "---> Java Maven Buildpack"
