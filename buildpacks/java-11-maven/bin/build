@@ -3,5 +3,8 @@ set -eo pipefail
 
 if [[ ! -f pom.xml ]];
 then
+  echo "No pom.xml exists, exiting"
   exit 100
 fi
+
+mvn -B clean package

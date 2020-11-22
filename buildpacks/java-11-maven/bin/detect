@@ -7,4 +7,3 @@ then
   exit 100
 fi
 
-echo "---> Java Maven Buildpack"

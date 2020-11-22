@@ -1,0 +1,16 @@
+# Buildpacks to include in builder
+[[buildpacks]]
+id = "dev.kameshs.cnbs.java-11.maven"
+image = "docker://quay.io/kameshsampath/java-11-jvm-bp:{{VERSION}}"
+
+[[order]]
+[[order.group]]
+id = "dev.kameshs.cnbs.java-11.maven"
+
+# Stack that will be used by the builder
+[stack]
+    id = "dev.kameshs.cnbs.stacks.java-11"
+    # This image is used at build-time
+    build-image = "quay.io/kameshsampath/cnbs-build:java-11-{{VERSION}}"
+    # This image is used at runtime
+    run-image = "quay.io/kameshsampath/cnbs-run:java-11-{{VERSION}}"
