@@ -34,5 +34,19 @@ builders:
 	rm -fr $$TMP_BLDRS
 
 publish:
-	@echo "Publish the image to remote repository"
+	docker push $(BASE_REPO):ubi8-minimal-$(VERSION_TAG)
+	docker push $(BASE_REPO):ubi8-$(VERSION_TAG)
+
+	for i in go quarkus-native java-11 ubi8-minimal ubi8; do \
+	    docker push $(RUN_REPO):$$i-$(VERSION_TAG); \
+	    docker push $(BUILD_REPO):$$i-$(VERSION_TAG); \
+	done
+
+	for img in $(JAVA_MAVEN_JVM_BUILDER_REPO) $(JAVA_MAVEN_JVM_BUILDPACK_REPO) $(QUARKUS_NATIVE_BUILDPACK_REPO); do \
+		docker push $$img:$(VERSION_TAG); \
+		if [ "$(VERSION_TAG)" != "tip" ]; then \
+		    docker tag $$img:$(VERSION_TAG) $$img:latest; \
+		    docker push $$img:latest; \
+		fi \
+	done
 
