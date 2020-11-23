@@ -12,7 +12,7 @@ A collection of my Cloud Native Buildpacks for building Cloud Native Java Applic
 [[source,bash]
 ----
 pack build example/helloboot \
-   --builder quay.io/kameshsampath/java-11-jvm-builder:tip \
+   --builder quay.io/kameshsampath/java-11-jvm-builder \
    --path $PROJECT_HOME/apps/helloboot
 ----
 
@@ -30,7 +30,7 @@ Doing `curl localhost:8080/hello` should return an response *Hello SpringBoot!*
 [[source,bash]
 ----
 pack build example/helloquarkus \
-   --builder quay.io/kameshsampath/java-11-jvm-builder:tip \
+   --builder quay.io/kameshsampath/java-11-jvm-builder \
    --path $PROJECT_HOME/apps/helloquarkus \
    --verbose
 ----
@@ -40,7 +40,7 @@ pack build example/helloquarkus \
 [[source,bash]
 ----
 pack build example/helloquarkus \
-   --builder quay.io/kameshsampath/quarkus-native-bp:tip \
+   --builder quay.io/kameshsampath/quarkus-native-bp \
    --path $PROJECT_HOME/apps/helloquarkus \
    --verbose
 ----
