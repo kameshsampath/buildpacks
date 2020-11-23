@@ -1,9 +1,16 @@
-= My Buildpacks Repository
+= My Cloud Native Java Buildpacks Repository
 
 A collection of my Cloud Native Buildpacks for building Cloud Native Java Applications using 
 
 - https://quarkus.io[Quarkus]
 - https://spring.io/projects/spring-boot[SpringBoot]
+
+== Pre-requisites
+
+Download and install 
+
+- https://www.docker.com/products/docker-desktop[Docker for Desktop]
+- https://buildpacks.io/docs/tools/pack/[pack]
 
 == Building Applications
 
@@ -12,7 +19,7 @@ A collection of my Cloud Native Buildpacks for building Cloud Native Java Applic
 [[source,bash]
 ----
 pack build example/helloboot \
-   --builder quay.io/kameshsampath/java-11-jvm-builder \
+   --builder quay.io/kameshsampath/java-11-jvm-builder:v1.0.0 \
    --path $PROJECT_HOME/apps/helloboot
 ----
 
@@ -30,7 +37,7 @@ Doing `curl localhost:8080/hello` should return an response *Hello SpringBoot!*
 [[source,bash]
 ----
 pack build example/helloquarkus \
-   --builder quay.io/kameshsampath/java-11-jvm-builder \
+   --builder quay.io/kameshsampath/java-11-jvm-builder:v1.0.0 \
    --path $PROJECT_HOME/apps/helloquarkus \
    --verbose
 ----
@@ -40,7 +47,7 @@ pack build example/helloquarkus \
 [[source,bash]
 ----
 pack build example/helloquarkus \
-   --builder quay.io/kameshsampath/quarkus-native-bp \
+   --builder quay.io/kameshsampath/quarkus-native-builder:v1.0.0 \
    --path $PROJECT_HOME/apps/helloquarkus \
    --verbose
 ----
@@ -56,10 +63,7 @@ Doing `curl localhost:8080/hello-resteasy` should return an response *Hello REST
 
 == Build the buildpacks locally
 
-Download and install 
-
-- https://www.docker.com/products/docker-desktop[Docker for Desktop]
-- https://buildpacks.io/docs/tools/pack/[pack]
+To build and install the buildpacks, builders locally, run:
 
 [[source,bash]
 ----
