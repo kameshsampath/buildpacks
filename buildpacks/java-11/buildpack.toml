@@ -3,9 +3,9 @@ api = "0.2"
 
 # Buildpack ID and metadata
 [buildpack]
-id = "dev.kameshs.cnbs.java-11.maven"
+id = "dev.kameshs.cnbs.java-11"
 version = "0.0.1"
-name = "Java 11 Maven Buildpack"
+name = "Java 11 Buildpack(Maven)"
 
 [[stacks]]
 id = "dev.kameshs.cnbs.stacks.java-11"

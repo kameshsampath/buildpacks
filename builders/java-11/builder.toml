@@ -1,11 +1,11 @@
 # Buildpacks to include in builder
 [[buildpacks]]
-id = "dev.kameshs.cnbs.java-11.maven"
+id = "dev.kameshs.cnbs.java-11"
 image = "docker://quay.io/kameshsampath/java-11-jvm-bp:{{VERSION}}"
 
 [[order]]
-[[order.group]]
-id = "dev.kameshs.cnbs.java-11.maven"
+    [[order.group]]
+    id = "dev.kameshs.cnbs.java-11"
 
 # Stack that will be used by the builder
 [stack]

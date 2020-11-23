@@ -1,0 +1,9 @@
+api = "0.2"
+
+[buildpack]
+id = "dev.kameshs.cnbs.quarkus-native"
+version = "0.0.1"
+name = "Quarkus Native Mode Buildpack(Maven)"
+
+[[stacks]]
+id = "dev.kameshs.cnbs.stacks.quarkus-native"

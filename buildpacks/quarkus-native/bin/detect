@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+dep_xpath='/*[local-name()="project"]'
+dep_xpath+='/*[local-name()="build"]'
+dep_xpath+='/*[local-name()="plugins"]'
+dep_xpath+='/*[local-name()="plugin"]'
+dep_xpath+='/*[local-name()="artifactId" and contains(.,"quarkus-maven-plugin")]'
+
+if ! xmllint --xpath "${dep_xpath}" pom.xml > /dev/null 2> /dev/null; then
+  exit 100
+fi

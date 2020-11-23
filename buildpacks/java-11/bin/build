@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+build_dir=$(pwd)
+bp_dir=$(cd "$(dirname "$0")"/..; pwd)
+layers_dir=$1
+platform_dir=$2
+
+[[ -f "$build_dir/.quarkus_app" ]]   && echo "Building Quarkus  App"
+[[ -f "$build_dir/.sprinboot_app" ]] && echo "Building SpringBoot App"
+
+echo "---> Cloud Native Java Buildpack"
+
+
+
+mvn_repo_layer="${layers_dir}/mvn_repo"
+
+mkdir -p "${mvn_repo_layer}"
+cat <<TOML > "${mvn_repo_layer}.toml"
+launch = false
+build = true
+cache = true
+TOML
+
+mvn -B -Dmaven.repo.local="${mvn_repo_layer}" package -DskipTests
+
+if [[ -f .quarkus_app ]];
+then
+  echo "Adding Quarkus App Layers"
+  if [[ -d target/quarkus-app ]];
+  then
+      echo "Adding fast-jar app directory"
+      
+      app_layer="${layers_dir}/app"
+      mkdir -p "${app_layer}"
+
+      cp -rv target/quarkus-app/* "${app_layer}/"
+      mv "${app_layer}/quarkus-run.jar" "${app_layer}/app.jar"
+  else
+      runner_jar=$(find target -maxdepth 1 -iname "*-runner.jar")
+      echo "Adding Quarkus Runner jar"
+          
+      lib=$(find target -maxdepth 1 -iname "lib")
+      
+      app_layer="${layers_dir}/app"
+      mkdir -p "${app_layer}"
+
+      cp -v "${runner_jar}" "${app_layer}/app.jar"
+      cp -rv "${lib}" "${app_layer}" 
+  fi
+else
+  runner_jar=$(find target -maxdepth 1 -iname "*.jar")
+  
+  app_layer="${layers_dir}/app"
+  mkdir -p "${app_layer}"
+
+  cp -v "${runner_jar}" "${app_layer}/app.jar"
+fi 
+
+rm -fr target src pom.xml "$build_dir/.sprinboot_app" "$build_dir/.quarkus_app"
+
+cat <<TOML > "${app_layer}.toml"
+launch = true
+build = false
+cache = false
+TOML
+
+cat <<TOML > "${layers_dir}/launch.toml"
+[[processes]]
+type = "web"
+command = "JAVA_APP_DIR=${app_layer} run-java.sh"
+TOML

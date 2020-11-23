@@ -1,3 +1,59 @@
 = My Buildpacks Repository
 
 A collection of my Cloud Native Buildpacks
+
+== Build the buildpacks locally
+
+[[source,bash]
+----
+make all
+----
+
+== Building Applications
+
+=== SpringBoot
+
+[[source,bash]
+----
+pack build example/helloboot \
+   --builder quay.io/kameshsampath/java-11-jvm-builder:tip \
+   --path $PROJECT_HOME/apps/helloboot
+----
+
+To run and test the image:
+
+[[source,bash]
+----
+docker run -it --rm -p 8080:8080 example/helloboot
+----
+
+Doing `curl localhost:8080/hello` should return an response *Hello SpringBoot!*
+
+=== Quarkus(JVM)
+
+[[source,bash]
+----
+pack build example/helloquarkus \
+   --builder quay.io/kameshsampath/java-11-jvm-builder:tip \
+   --path $PROJECT_HOME/apps/helloquarkus \
+   --verbose
+----
+
+=== Quarkus(Native Mode)
+
+[[source,bash]
+----
+pack build example/helloquarkus \
+   --builder quay.io/kameshsampath/quarkus-native-bp:tip \
+   --path $PROJECT_HOME/apps/helloquarkus \
+   --verbose
+----
+
+To run and test the image:
+
+[[source,bash]
+----
+docker run -it --rm -p 8080:8080 example/helloquarkus
+----
+
+Doing `curl localhost:8080/hello-resteasy` should return an response *Hello RESTEasy*
