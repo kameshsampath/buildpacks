@@ -10,6 +10,7 @@ RUN_REPO   := quay.io/kameshsampath/cnbs-run
 JAVA_MAVEN_JVM_BUILDER_REPO := quay.io/kameshsampath/java-11-jvm-builder
 JAVA_MAVEN_JVM_BUILDPACK_REPO := quay.io/kameshsampath/java-11-jvm-bp
 QUARKUS_NATIVE_BUILDPACK_REPO := quay.io/kameshsampath/quarkus-native-bp
+QUARKUS_NATIVE_BUILDER_REPO := quay.io/kameshsampath/quarkus-native-builder
 
 .PHONY:	stacks	buildpacks	builders
 
@@ -30,7 +31,7 @@ builders:
 	sed "s/{{VERSION}}/$(VERSION_TAG)/g" ./builders/java-11/builder.toml > $$TMP_BLDRS/java-11.toml && \
 	sed "s/{{VERSION}}/$(VERSION_TAG)/g" ./builders/quarkus-native/builder.toml > $$TMP_BLDRS/quarkus-native.toml && \
 	$(PACK_CMD) create-builder $(JAVA_MAVEN_JVM_BUILDER_REPO):$(VERSION_TAG) --config $$TMP_BLDRS/java-11.toml && \
-	$(PACK_CMD) create-builder $(QUARKUS_NATIVE_BUILDPACK_REPO):$(VERSION_TAG) --config $$TMP_BLDRS/quarkus-native.toml && \
+	$(PACK_CMD) create-builder $(QUARKUS_NATIVE_BUILDER_REPO):$(VERSION_TAG) --config $$TMP_BLDRS/quarkus-native.toml && \
 	rm -fr $$TMP_BLDRS
 
 publish:
@@ -42,7 +43,7 @@ publish:
 	    docker push $(BUILD_REPO):$$i-$(VERSION_TAG); \
 	done
 
-	for img in $(JAVA_MAVEN_JVM_BUILDER_REPO) $(JAVA_MAVEN_JVM_BUILDPACK_REPO) $(QUARKUS_NATIVE_BUILDPACK_REPO); do \
+	for img in $(JAVA_MAVEN_JVM_BUILDER_REPO) $(JAVA_MAVEN_JVM_BUILDPACK_REPO) $(QUARKUS_NATIVE_BUILDPACK_REPO) $(QUARKUS_NATIVE_BUILDER_REPO); do \
 		docker push $$img:$(VERSION_TAG); \
 		if [ "$(VERSION_TAG)" != "tip" ]; then \
 		    docker tag $$img:$(VERSION_TAG) $$img:latest; \

@@ -1,5 +1,7 @@
-api = "0.2"
+# Buildpack API version
+api = "0.4"
 
+# Buildpack ID and metadata
 [buildpack]
 id = "dev.kameshs.cnbs.quarkus-native"
 version = "0.0.1"
