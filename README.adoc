@@ -1,13 +1,9 @@
 = My Buildpacks Repository
 
-A collection of my Cloud Native Buildpacks
+A collection of my Cloud Native Buildpacks for building Cloud Native Java Applications using 
 
-== Build the buildpacks locally
-
-[[source,bash]
-----
-make all
-----
+- https://quarkus.io[Quarkus]
+- https://spring.io/projects/spring-boot[SpringBoot]
 
 == Building Applications
 
@@ -57,3 +53,15 @@ docker run -it --rm -p 8080:8080 example/helloquarkus
 ----
 
 Doing `curl localhost:8080/hello-resteasy` should return an response *Hello RESTEasy*
+
+== Build the buildpacks locally
+
+Download and install 
+
+- https://www.docker.com/products/docker-desktop[Docker for Desktop]
+- https://buildpacks.io/docs/tools/pack/[pack]
+
+[[source,bash]
+----
+make all
+----
