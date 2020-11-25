@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://www.github.com/kameshsampath/buildpacks/compare/v1.0.0...v1.0.1) (2020-11-25)
+
+
+### Bug Fixes
+
+* add mave settings buildpack ([3bc5153](https://www.github.com/kameshsampath/buildpacks/commit/3bc51536a70b209489d4422a10ce8bbe22965e93)), closes [#2](https://www.github.com/kameshsampath/buildpacks/issues/2)
+
 ## 1.0.0 (2020-11-23)
 
 
