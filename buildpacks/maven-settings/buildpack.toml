@@ -1,0 +1,14 @@
+# Buildpack API version
+api = "0.4"
+
+# Buildpack ID and metadata
+[buildpack]
+id = "dev.kameshs.cnbs.maven-settings"
+version = "0.0.1"
+name = "Maven Settings Buildpack"
+
+[[stacks]]
+id = "dev.kameshs.cnbs.stacks.java-11"
+
+[[stacks]]
+id = "dev.kameshs.cnbs.stacks.quarkus-native"

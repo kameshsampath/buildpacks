@@ -23,6 +23,20 @@ pack build example/helloboot \
    --path $PROJECT_HOME/apps/helloboot
 ----
 
+[TIP]
+====
+If you have a maven repository manager , then you can run the builder with an environment variable `MAVEN_MIRROR_URL` as shown:
+
+[source,bash]
+----
+pack build example/helloboot \
+   --env MAVEN_MIRROR_URL="<MAVEN_MIRROR_URL>" \
+   --builder quay.io/kameshsampath/java-11-jvm-builder:tip \
+   --path $PROJECT_HOME/apps/helloboot \
+   --verbose
+----
+====
+
 To run and test the image:
 
 [[source,bash]

@@ -3,15 +3,21 @@
 id = "dev.kameshs.cnbs.quarkus-native"
 image = "docker://quay.io/kameshsampath/quarkus-native-bp:{{VERSION}}"
 
+[[buildpacks]]
+id = "dev.kameshs.cnbs.maven-settings"
+image = "docker://quay.io/kameshsampath/maven-settings-bp:{{VERSION}}"
+
 [[order]]
+    [[order.group]]
+    id = "dev.kameshs.cnbs.maven-settings"
     # Quarkus Native 
     [[order.group]]
     id = "dev.kameshs.cnbs.quarkus-native"
 
 # Stack that will be used by the builder
 [stack]
-    id = "dev.kameshs.cnbs.stacks.quarkus-native"
-    # This image is used at build-time
-    build-image = "quay.io/kameshsampath/cnbs-build:quarkus-native-{{VERSION}}"
-    # This image is used at runtime
-    run-image = "quay.io/kameshsampath/cnbs-run:quarkus-native-{{VERSION}}"
+id = "dev.kameshs.cnbs.stacks.quarkus-native"
+# This image is used at build-time
+build-image = "quay.io/kameshsampath/cnbs-build:quarkus-native-{{VERSION}}"
+# This image is used at runtime
+run-image = "quay.io/kameshsampath/cnbs-run:quarkus-native-{{VERSION}}"

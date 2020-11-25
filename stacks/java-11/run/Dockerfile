@@ -23,7 +23,7 @@ RUN microdnf install curl ca-certificates ${JAVA_PACKAGE} \
     && curl https://repo1.maven.org/maven2/io/fabric8/run-java-sh/${RUN_JAVA_VERSION}/run-java-sh-${RUN_JAVA_VERSION}-sh.sh -o /usr/local/bin/run-java.sh \
     && chmod "a+rx" /usr/local/bin/run-java.sh \
     && echo "securerandom.source=file:/dev/urandom" >> /etc/alternatives/jre/lib/security/java.security \
-    && chown cnb:cnb $HOME
+    && chown cnb:0 $HOME
 
 USER cnb
 

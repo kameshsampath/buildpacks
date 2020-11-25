@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+printenv 
+
+build_dir=$(pwd)
+
+pom_xml_file="$build_dir/pom.xml"
+
+echo "Checking if $pom_xml_file exists"
+
+if [[ ! -f $pom_xml_file ]];
+then
+  echo "No pom.xml exists, exiting"
+  exit 100
+fi

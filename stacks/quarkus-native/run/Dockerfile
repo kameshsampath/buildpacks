@@ -9,7 +9,8 @@ ENV HOME /projects
 WORKDIR $HOME
 
 USER root
-RUN chown cnb:cnb $HOME
+RUN chown cnb:0 $HOME
+
 USER cnb
 
 ENV PORT 8080
