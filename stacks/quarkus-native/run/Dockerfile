@@ -9,8 +9,9 @@ ENV HOME /projects
 WORKDIR $HOME
 
 USER root
-RUN chown cnb:0 $HOME
-
-USER cnb
+RUN chown ${CNB_USER_ID}:${CNB_GROUP_ID} $HOME
 
 ENV PORT 8080
+
+# Set user and group (as declared in base image)
+USER ${CNB_USER_ID}:${CNB_GROUP_ID}
