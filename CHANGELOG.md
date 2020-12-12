@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.2](https://www.github.com/kameshsampath/buildpacks/compare/v1.0.1...v1.0.2) (2020-12-12)
+
+
+### Bug Fixes
+
+* use run as user with `uid:gid` format ([40513b2](https://www.github.com/kameshsampath/buildpacks/commit/40513b2450be0ada1f5b66010a12ff70884ee025))
+
 ### [1.0.1](https://www.github.com/kameshsampath/buildpacks/compare/v1.0.0...v1.0.1) (2020-11-25)
 
 
